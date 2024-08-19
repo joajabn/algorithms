@@ -2,17 +2,18 @@ package pl.nyczjablonska.sorting;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Random;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class SelectionSortTest {
+class BubbleSortTest {
 
-    private final SelectionSort sort = new SelectionSort();
+    private final BubbleSort sort = new BubbleSort();
 
     public static Stream<int[]> provideArrays() {
         return Stream.of(
@@ -44,7 +45,7 @@ class SelectionSortTest {
 
     public static int[] generateArray(int length){
         var random = new Random();
-        var intStream = random.ints(-100, 100);
+        var intStream = random.ints(-10000, 10000);
         return intStream.limit(length).toArray();
     }
 
