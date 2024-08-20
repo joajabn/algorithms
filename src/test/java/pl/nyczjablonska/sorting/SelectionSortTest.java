@@ -27,10 +27,9 @@ class SelectionSortTest {
 
     @ParameterizedTest
     @MethodSource("provideArrays")
-    public void shouldReturnSortedArray(){
+    public void shouldReturnSortedArray(int[] array){
         //given
         long startTime = System.nanoTime();
-        int[] array = generateArray(100);
 
         //when
         int[] sortedArray = sort.sort(array);
