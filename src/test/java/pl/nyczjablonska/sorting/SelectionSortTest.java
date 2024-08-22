@@ -17,7 +17,6 @@ class SelectionSortTest {
     public static Stream<int[]> provideArrays() {
         return Stream.of(
                 generateArray(100),
-                generateArray(500),
                 generateArray(1000),
                 generateArray(5000),
                 generateArray(10_000),
@@ -43,7 +42,7 @@ class SelectionSortTest {
 
     public static int[] generateArray(int length){
         var random = new Random();
-        var intStream = random.ints(-100, 100);
+        var intStream = random.ints(-10000, 10000);
         return intStream.limit(length).toArray();
     }
 
