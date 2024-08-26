@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class MergeSort {
 //    {10, 9, 3, 4, 11, 0, 5}
     public static int[] sort(int[] array){
-        int middleIndex = (array[0] + array.length - 1) / 2;
+        int middleIndex = (array.length - 1) / 2;
         int[] leftArray = Arrays.copyOfRange(array, 0, middleIndex);
         int[] rightArray = Arrays.copyOfRange(array, middleIndex, array.length);
         if(leftArray.length > 1){
@@ -15,14 +15,9 @@ public class MergeSort {
         if(rightArray.length > 1){
             sort(rightArray);
         }
-
-
-
-        return null;
+        return merge(leftArray, rightArray);
     }
-//    left {2, 4}
-//    right {3, 5}
-//    result {2, 3, 4, 5}
+
     public static int[] merge(int[] leftArray, int[] rightArray){
         int leftIndex = 0;
         int rightIndex = 0;
