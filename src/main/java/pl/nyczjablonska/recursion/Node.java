@@ -15,13 +15,13 @@ public class Node {
         this.value = value;
     }
 
-    public static void dfs(Node node){
+    public static void dfs(Node node) {
         Set<Node> nodeSet = new HashSet<>();
         dfsRecursive(node, nodeSet);
     }
 
     private static void dfsRecursive(Node node, Set<Node> nodeSet) {
-        if(node == null){
+        if (node == null) {
             return;
         }
         if (!nodeSet.contains(node)) {
@@ -30,6 +30,24 @@ public class Node {
             dfsRecursive(node.leftNode, nodeSet);
             dfsRecursive(node.rightNode, nodeSet);
         }
+    }
+
+    public static int calculateTreeHeight(Node node) {
+        Set<Node> nodeSet = new HashSet<>();
+        return maxHeight(node, nodeSet);
+    }
+
+    private static int maxHeight(Node node, Set<Node> nodeSet) {
+        if (node == null) {
+            return 0;
+        }
+        if (!nodeSet.contains(node)) {
+            nodeSet.add(node);
+            int leftHeight = maxHeight(node.leftNode, nodeSet);
+            int rightHeight = maxHeight(node.rightNode, nodeSet);
+            return Math.max(leftHeight, rightHeight) + 1;
+        }
+        return 0;
     }
 
     @Override
