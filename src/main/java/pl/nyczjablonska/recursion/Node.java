@@ -1,6 +1,7 @@
 package pl.nyczjablonska.recursion;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class Node {
@@ -29,5 +30,18 @@ public class Node {
             dfsRecursive(node.leftNode, nodeSet);
             dfsRecursive(node.rightNode, nodeSet);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Node node = (Node) o;
+        return value == node.value && Objects.equals(leftNode, node.leftNode) && Objects.equals(rightNode, node.rightNode);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(leftNode, rightNode, value);
     }
 }
