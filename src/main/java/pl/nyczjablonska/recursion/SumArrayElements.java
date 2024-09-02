@@ -12,18 +12,18 @@ public class SumArrayElements {
         System.out.println(sumArrayElements(array, 0));
 
     }
-    public static int sumArrayElements(int[] array, int index){
+    public static int sumArrayElements(int[] array, int startIndex){
 //        #1
-//        index = lastIndex
+//        startIndex = lastIndex
 //        if(array.length == 1){
 //            return array[0];
 //        } else {
 //            return array[0] + sumArrayElements(Arrays.copyOfRange(array, 1, array.length - 1));
 //        }
 //        #2
-//        index = startIndex
-        if(index < array.length){
-            return array[index] + sumArrayElements(array, index + 1);
+//        startIndex = startIndex
+        if(startIndex < array.length){
+            return array[startIndex] + sumArrayElements(array, startIndex + 1);
         }
         return 0;
     }
