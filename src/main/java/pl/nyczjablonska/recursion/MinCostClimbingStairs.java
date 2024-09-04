@@ -2,7 +2,7 @@ package pl.nyczjablonska.recursion;
 
 public class MinCostClimbingStairs {
     public static void main(String[] args) {
-        int[] costs = {1,100,1,1,1,100,1,1,100,1};
+        int[] costs = {1, 100, 1, 1, 1, 100, 1, 1, 100, 1};
         MinCostClimbingStairs minCost = new MinCostClimbingStairs();
         System.out.println(minCost.minCostClimbingStairs(costs));
     }
