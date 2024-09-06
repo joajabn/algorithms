@@ -33,21 +33,16 @@ public class Node {
     }
 
     public static int calculateTreeHeight(Node node) {
-        Set<Node> nodeSet = new HashSet<>();
-        return maxHeight(node, nodeSet);
+        return maxHeight(node);
     }
 
-    private static int maxHeight(Node node, Set<Node> nodeSet) {
+    private static int maxHeight(Node node) {
         if (node == null) {
             return 0;
         }
-        if (!nodeSet.contains(node)) {
-            nodeSet.add(node);
-            int leftHeight = maxHeight(node.leftNode, nodeSet);
-            int rightHeight = maxHeight(node.rightNode, nodeSet);
-            return Math.max(leftHeight, rightHeight) + 1;
-        }
-        return 0;
+        int leftHeight = maxHeight(node.leftNode);
+        int rightHeight = maxHeight(node.rightNode);
+        return Math.max(leftHeight, rightHeight) + 1;
     }
 
     @Override

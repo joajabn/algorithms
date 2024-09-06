@@ -76,13 +76,7 @@ class NodeTest {
     @Test
     public void testDfs6Nodes() {
         //given
-        Node leftNode = new Node(
-                new Node(null, null, 4),
-                new Node(null, null, 5),
-                2);
-        Node rightNode = new Node
-                (new Node(null, null, 6), null, 3);
-        Node root = new Node(leftNode, rightNode, 1);
+        Node root = getTreeOfHeight3();
 
         //when
         Node.dfs(root);
@@ -101,32 +95,10 @@ class NodeTest {
         assertEquals(expectedOutput, outContent.toString());
     }
 
-    /**
-     *                  0
-     *               /     \
-     *             /        \
-     *           /           \
-     *         /              \
-     *       1   ___________>  2
-     *     /                 /  \
-     *    3                 5    6
-     *   / \               / \
-     *  7  8 <-------------   -- 9
-     *
-     *
-     **/
     @Test
     public void testDfsNodes() {
         //given
-        var node9 = new Node(null, null, 9);
-        var node8 = new Node(null, null, 8);
-        var node7 = new Node(null, null, 7);
-        var node6 = new Node(null, null, 6);
-        var node5 = new Node(node8, node9, 5);
-        var node3 = new Node(node7, node8, 3);
-        var node2 = new Node(node5, node6, 2);
-        var node1 = new Node(node3, node2, 1);
-        Node root = new Node(node1, node2,  0);
+        Node root = getTreeOfHeight5();
 
         //when
         Node.dfs(root);
@@ -148,27 +120,21 @@ class NodeTest {
         assertEquals(expectedOutput, outContent.toString());
     }
 
-    @Test
-    public void testCalculateTreeHeight3() {
-        //given
-        Node leftNode = new Node(
-                new Node(null, null, 4),
-                new Node(null, null, 5),
-                2);
-        Node rightNode = new Node
-                (new Node(null, null, 6), null, 3);
-        Node root = new Node(leftNode, rightNode, 1);
-
-        //when
-        int actual = Node.calculateTreeHeight(root);
-
-        //then
-        assertEquals(3, actual);
-    }
-
-    @Test
-    public void testCalculateTreeHeight5() {
-        //given
+    /**
+     *                  0
+     *               /     \
+     *             /        \
+     *           /           \
+     *         /              \
+     *       1   ___________>  2
+     *     /                 /  \
+     *    3                 5    6
+     *   / \               / \
+     *  7  8 <-------------   -- 9
+     *
+     *
+     **/
+    private static Node getTreeOfHeight5() {
         var node9 = new Node(null, null, 9);
         var node8 = new Node(null, null, 8);
         var node7 = new Node(null, null, 7);
@@ -177,7 +143,35 @@ class NodeTest {
         var node3 = new Node(node7, node8, 3);
         var node2 = new Node(node5, node6, 2);
         var node1 = new Node(node3, node2, 1);
-        Node root = new Node(node1, node2,  0);
+        return new Node(node1, node2,  0);
+    }
+
+    @Test
+    public void testCalculateTreeHeight3() {
+        //given
+        Node root = getTreeOfHeight3();
+
+        //when
+        int actual = Node.calculateTreeHeight(root);
+
+        //then
+        assertEquals(3, actual);
+    }
+
+    private static Node getTreeOfHeight3() {
+        Node leftNode = new Node(
+                new Node(null, null, 4),
+                new Node(null, null, 5),
+                2);
+        Node rightNode = new Node
+                (new Node(null, null, 6), null, 3);
+        return new Node(leftNode, rightNode, 1);
+    }
+
+    @Test
+    public void testCalculateTreeHeight5() {
+        //given
+        Node root = getTreeOfHeight5();
 
         //when
         int actual = Node.calculateTreeHeight(root);
