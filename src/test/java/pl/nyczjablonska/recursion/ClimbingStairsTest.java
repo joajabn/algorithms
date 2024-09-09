@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ClimbingStairsTest {
     private ClimbingStairs climbing = new ClimbingStairs();
-
     @Test
     public void shouldReturnNumberOfWays2(){
         //given
@@ -18,7 +17,6 @@ class ClimbingStairsTest {
         //then
         assertEquals(2, actualNumberOfWays);
     }
-
     @Test
     public void shouldReturnNumberOfWays3(){
         //given
@@ -30,6 +28,4 @@ class ClimbingStairsTest {
         //then
         assertEquals(3, actualNumberOfWays);
     }
-
-
 }

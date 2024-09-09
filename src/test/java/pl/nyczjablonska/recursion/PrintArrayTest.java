@@ -11,7 +11,7 @@ class PrintArrayTest {
     @Test
     public void testPrintArray() {
         //given
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        var outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         int[] array = RandomArrayGenerator.generateArray(50);
         int startIndex = 0;
