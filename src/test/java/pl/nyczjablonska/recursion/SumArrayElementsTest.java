@@ -2,6 +2,9 @@ package pl.nyczjablonska.recursion;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.stream.IntStream;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class SumArrayElementsTest {
@@ -16,10 +19,7 @@ class SumArrayElementsTest {
         int actual = SumArrayElements.sumArrayElements(array, startIndex);
 
         //expectedOutput
-        int expectedOutput = 0;
-        for(int i = 0; i < array.length; i++){
-            expectedOutput += array[i];
-        }
+        int expectedOutput = Arrays.stream(array).sum();
 
         //then
         assertEquals(expectedOutput, actual);

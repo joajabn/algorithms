@@ -12,12 +12,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class NodeTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
-
     @BeforeEach
     public void setUpStreams() {
         System.setOut(new PrintStream(outContent));
     }
-
     @AfterEach
     public void restoreStreams() {
         System.setOut(originalOut);
@@ -42,7 +40,6 @@ class NodeTest {
         // Verify output
         assertEquals(expectedOutput, outContent.toString());
     }
-
     @Test
     public void testDfs7Nodes() {
         //given
@@ -94,7 +91,6 @@ class NodeTest {
         //then
         assertEquals(expectedOutput, outContent.toString());
     }
-
     @Test
     public void testDfsNodes() {
         //given
@@ -119,8 +115,8 @@ class NodeTest {
         //then
         assertEquals(expectedOutput, outContent.toString());
     }
-
     /**
+     * Tree of height 5
      *                  0
      *               /     \
      *             /        \
@@ -145,7 +141,6 @@ class NodeTest {
         var node1 = new Node(node3, node2, 1);
         return new Node(node1, node2,  0);
     }
-
     @Test
     public void testCalculateTreeHeight3() {
         //given
@@ -157,7 +152,6 @@ class NodeTest {
         //then
         assertEquals(3, actual);
     }
-
     private static Node getTreeOfHeight3() {
         Node leftNode = new Node(
                 new Node(null, null, 4),
@@ -167,7 +161,6 @@ class NodeTest {
                 (new Node(null, null, 6), null, 3);
         return new Node(leftNode, rightNode, 1);
     }
-
     @Test
     public void testCalculateTreeHeight5() {
         //given
@@ -179,5 +172,4 @@ class NodeTest {
         //then
         assertEquals(5, actual);
     }
-
 }
