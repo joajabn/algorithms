@@ -5,10 +5,6 @@ public class Factorial {
         if (number < 0) {
             throw new IllegalArgumentException("Factorial is not defined for negative numbers");
         }
-        if(number <= 1){
-            return 1;
-        } else {
-            return number * calculateNumberFactorial(number - 1);
-        }
+        return (number == 0 || number == 1) ? 1 : number * calculateNumberFactorial(number - 1);
     }
 }

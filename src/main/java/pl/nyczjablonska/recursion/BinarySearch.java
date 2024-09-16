@@ -9,7 +9,7 @@ public class BinarySearch {
 //    posortowanej tablicy intów o długości 100.
         public static int search(int[] array, int firstIndex, int lastIndex, int numberToFound) {
         if (firstIndex <= lastIndex) {
-            int middle = firstIndex + (lastIndex - firstIndex) / 2;
+            int middle = (firstIndex + lastIndex) / 2;
             if (numberToFound < array[middle]) {
                 return search(array, firstIndex, middle - 1, numberToFound);
             } else if (numberToFound > array[middle]) {
