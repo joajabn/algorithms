@@ -29,4 +29,16 @@ class MinCostClimbingStairsTest {
         //then
         assertEquals(6, actual);
     }
+    //FIXME
+    @Test
+    public void shouldReturn16() {
+        //given
+        int[] costs = {1, 4, 5, 2, 3, 9};
+
+        //when
+        int actual = minCost.minCostClimbingStairs(costs);
+
+        //then
+        assertEquals(16, actual);
+    }
 }
