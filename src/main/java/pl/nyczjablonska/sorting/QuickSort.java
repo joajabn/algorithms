@@ -2,7 +2,7 @@ package pl.nyczjablonska.sorting;
 
 public class QuickSort {
 
-    public int calculatePivotIndex(int[] array, int firstIndex, int lastIndex){
+    public int calculatePivotPosition(int[] array, int firstIndex, int lastIndex){
         int pivot = array[(firstIndex + lastIndex) / 2];
         int pivotIndex = 0;
         for(int i = 0; i < array.length; i++){
@@ -21,13 +21,13 @@ public class QuickSort {
         if(firstIndex >= lastIndex) {
             return array;
         }
-        int finalPivotIndex = calculatePivotIndex(array, firstIndex, lastIndex);
+        int finalPivotIndex = calculatePivotPosition(array, firstIndex, lastIndex);
         int temp = array[finalPivotIndex];
         int actualPivot = (firstIndex + lastIndex) / 2;
         array[finalPivotIndex] = array[actualPivot];
         array[actualPivot] = temp;
         for(int i = 0; i < array.length; i++) {
-            if(array[i] > array[finalPivotIndex]) {
+            if(array[i] >= array[finalPivotIndex]) {
                 for(int j = finalPivotIndex + 1; j < array.length; j++){
                     if(array[j] < array[finalPivotIndex]) {
                         int temp2 = array[j];

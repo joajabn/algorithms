@@ -54,7 +54,7 @@ class MergeSortTest {
 
     public static int[] generateArray(int length){
         var random = new Random();
-        var intStream = random.ints(-10000, 10000);
+        var intStream = random.ints(-1000, 1000);
         return intStream.limit(length).toArray();
     }
 

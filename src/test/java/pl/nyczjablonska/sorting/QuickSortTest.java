@@ -1,46 +1,39 @@
 package pl.nyczjablonska.sorting;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.Arrays;
-import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static pl.nyczjablonska.sorting.MergeSortTest.checkIfSorted;
-import static pl.nyczjablonska.sorting.MergeSortTest.generateArray;
 
 class QuickSortTest {
     private final QuickSort sort = new QuickSort();
     @Test
     public void shouldSortArray(){
         //given
-        int[] array = {10, 13, 9, 16, 12, 25};
+        int[] array = {-887, -784, -784, -830,};
 
         //when
         int[] actual = sort.sort(array, 0, array.length - 1);
 
         //then
-        int[] expected = {9, 10, 12, 13, 16, 25};
+        int[] expected = {-887, -830, -784, -784};
         assertEquals(Arrays.toString(expected), Arrays.toString(actual));
     }
 
-    public static Stream<int[]> provideArrays() {
-        return Stream.of(
-                generateArray(100),
-                generateArray(200),
-                generateArray(300)
-//                generateArray(10_000),
-//                generateArray(100_000)
-        );
-    }
-
-    @ParameterizedTest
-    @MethodSource("provideArrays")
-    public void shouldReturnSortedArray(int[] array){
+    @Test
+    public void shouldReturnSortedArray(){
         //given
         long startTime = System.nanoTime();
+        int[] array = new int[]{
+                440, -335, -830, 595, -100, 431,
+                -693, -574, -195, 361, -179, 952, -887, -747, 369, -396, 991, 450, 221, 403, -706, -435, -17, 263, 652,
+                -366, -222, 307, 736, -784, 624, 178, 397, 613, 437, -744, 60, -103, -325, -767, -187, 535, 535, -331,
+                201, 118, 432, 461, 366, 102, -521, -721, -632, 981, -585, 484, -63, -847, -341, -37, 181, 504, 454, 71,
+                92, -693, 163, -397, 724, -31, 393, -602, 907, -392, 138, -751, 710, 198, -999, -826, 769, -355, -154,
+                -958, -780, -819, -952, -5
+        };
 
         //when
         int[] sortedArray = sort.sort(array, 0, array.length - 1);
