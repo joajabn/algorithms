@@ -54,11 +54,11 @@ class MergeSortTest {
 
     public static int[] generateArray(int length){
         var random = new Random();
-        var intStream = random.ints(-10000, 10000);
+        var intStream = random.ints(-1000, 1000);
         return intStream.limit(length).toArray();
     }
 
-    public void checkIfSorted(int[] array){
+    public static void checkIfSorted(int[] array){
         for(int i = 0; i < array.length - 1; i++){
             assertTrue(array[i] <= array[i + 1]);
         }
