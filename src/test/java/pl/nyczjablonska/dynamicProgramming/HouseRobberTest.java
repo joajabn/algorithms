@@ -29,4 +29,10 @@ class HouseRobberTest {
         int actual = HouseRobber.maxHouseRobbing(array);
         assertEquals(result, actual);
     }
+    @Test
+    public void shouldReturnMaxAmountOfMoneyMemo(){
+        int[] array = {2, 7, 0, 3, 1};
+        int actual = HouseRobber.maxHouseRobbing(array);
+        assertEquals(10, actual);
+    }
 }
