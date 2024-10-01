@@ -6,7 +6,8 @@ public class HouseRobber {
     public static int maxHouseRobbing(int[] array) {
         int[] dp = new int[array.length];
         Arrays.fill(dp, -1);
-        return memoRobHouse(array, array.length - 1, dp);
+//        return memoRobHouse(array, array.length - 1, dp);
+        return dpRobHouse(array);
     }
 
     public static int robHouse(int[] array, int cost, int index) {
@@ -52,5 +53,19 @@ public class HouseRobber {
 
         dp[index] = Math.max(take, notTake); // Store result in dp array
         return dp[index];
+    }
+
+    public static int dpRobHouse(int[] t){
+        int length = t.length;
+        if(length == 1){
+            return t[0];
+        }
+        int[] dp = new int[length];
+        dp[0] = t[0];
+        dp[1] = Math.max(t[0], t[1]);
+        for(int i = 2; i < length; i++){
+            dp[i] = Math.max(t[i] + dp[i - 2], dp[i - 1]);
+        }
+        return dp[length - 1];
     }
 }
