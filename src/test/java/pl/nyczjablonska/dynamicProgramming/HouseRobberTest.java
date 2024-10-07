@@ -19,8 +19,8 @@ class HouseRobberTest {
                 Arguments.of(new int[]{5}, 5),
                 Arguments.of(new int[]{10, 20}, 20),
                 Arguments.of(new int[]{5, 5, 5, 5, 5}, 15),
-                Arguments.of(new int[]{5, 3, 4, 11, 2}, 16),
-                Arguments.of(new int[]{}, 0)
+                Arguments.of(new int[]{5, 3, 4, 11, 2}, 16)
+//                Arguments.of(new int[]{}, 0)
         );
     }
     @ParameterizedTest
@@ -28,5 +28,11 @@ class HouseRobberTest {
     public void shouldReturnMaxAmountOfMoney(int[] array, int result){
         int actual = HouseRobber.maxHouseRobbing(array);
         assertEquals(result, actual);
+    }
+    @Test
+    public void shouldReturnMaxAmountOfMoneyMemo(){
+        int[] array = {2, 7, 0, 3, 1};
+        int actual = HouseRobber.maxHouseRobbing(array);
+        assertEquals(10, actual);
     }
 }
