@@ -31,7 +31,7 @@ class MinCostClimbingStairsTest {
     }
     //FIXME
     @Test
-    public void shouldReturn16() {
+    public void shouldReturn9() {
         //given
         int[] costs = {1, 4, 5, 2, 3, 9};
 
@@ -39,6 +39,6 @@ class MinCostClimbingStairsTest {
         int actual = minCost.minCostClimbingStairs(costs);
 
         //then
-        assertEquals(16, actual);
+        assertEquals(9, actual);
     }
 }
