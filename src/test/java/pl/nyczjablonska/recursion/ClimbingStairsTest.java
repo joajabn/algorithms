@@ -12,7 +12,7 @@ class ClimbingStairsTest {
         int n = 2;
 
         //when
-        int actualNumberOfWays = ClimbingStairs.climbStairs(n);
+        int actualNumberOfWays = ClimbingStairs.dpClimbStairs(n);
 
         //then
         assertEquals(2, actualNumberOfWays);
@@ -23,7 +23,7 @@ class ClimbingStairsTest {
         int n = 3;
 
         //when
-        int actualNumberOfWays = ClimbingStairs.climbStairs(n);
+        int actualNumberOfWays = ClimbingStairs.dpClimbStairs(n);
 
         //then
         assertEquals(3, actualNumberOfWays);
