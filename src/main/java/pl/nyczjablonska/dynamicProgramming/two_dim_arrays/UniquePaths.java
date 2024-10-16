@@ -8,7 +8,6 @@ public class UniquePaths {
         for(int[] row : t){
             Arrays.fill(row, -1);
         }
-//        return countUniquePathsMemo(m - 1, n - 1, t);
         return dpCountUniquePaths(m, n, t);
     }
 

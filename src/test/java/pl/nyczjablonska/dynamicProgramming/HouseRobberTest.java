@@ -20,7 +20,6 @@ class HouseRobberTest {
                 Arguments.of(new int[]{10, 20}, 20),
                 Arguments.of(new int[]{5, 5, 5, 5, 5}, 15),
                 Arguments.of(new int[]{5, 3, 4, 11, 2}, 16)
-//                Arguments.of(new int[]{}, 0)
         );
     }
     @ParameterizedTest
