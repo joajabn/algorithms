@@ -7,7 +7,6 @@ public class MinCostClimbingStairs {
         System.out.println(minCost.minCostClimbingStairs(costs));
     }
     public int minCostClimbingStairs(int[] costs) {
-//        return Math.min(climbStairs(costs, 0, 0 ), climbStairs(costs, 0, 1));
         return dpClimbStairs(costs);
     }
 
