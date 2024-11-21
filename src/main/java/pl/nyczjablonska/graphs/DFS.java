@@ -1,5 +1,7 @@
 package pl.nyczjablonska.graphs;
 
+import java.util.List;
+
 public class DFS {
     /**
      *                  0
@@ -33,8 +35,33 @@ public class DFS {
         return new Node(node1, node2, 0);
     }
 
+    /**
+     *                  0
+     *               /     \
+     *             /        \
+     *           /           \
+     *         /              \
+     *       1                2
+     *     /   \            /  \
+     *    3     4         5      6
+     *
+     *
+     **/
+    public static List<Node> binaryTree3LevelsAsList(){
+        var node6 = new Node(null, null, 6);
+        var node5 = new Node(null, null, 5);
+        var node4 = new Node(null, null, 4);
+        var node3 = new Node(null, null, 3);
+        var node2 = new Node(node5, node6, 2);
+        var node1 = new Node(node3, node4, 1);
+        Node root = new Node(node1, node2, 0);
+        return List.of(root, node1, node2, node3, node4, node5, node6);
+    }
+
     public static void main(String[] args) {
         printElements(tree());
+        List<Node> nodes = binaryTree3LevelsAsList();
+        printElements(nodes.get(1));
     }
     static void printElements(Node root){
         System.out.println(root.value() + "->");
