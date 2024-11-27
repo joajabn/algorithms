@@ -1,6 +1,8 @@
 package pl.nyczjablonska.graphs;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class DFS {
     /**
@@ -57,19 +59,140 @@ public class DFS {
         Node root = new Node(node1, node2, 0);
         return List.of(root, node1, node2, node3, node4, node5, node6);
     }
+    /**
+     *                  0
+     *               /     \
+     *             /        \
+     *           /           \
+     *         /              \
+     *       1   ___________>  2
+     *     /                 /  \
+     *    3                 5    6
+     *   / \               / \
+     *  7  8 <-------------   -- 9
+     *
+     *
+     **/
+    public static Node graph() {
+        var node9 = new Node(null, null, 9);
+        var node8 = new Node(null, null, 8);
+        var node7 = new Node(null, null, 7);
+        var node6 = new Node(null, null, 6);
+        var node5 = new Node(node8, node9, 5);
+        var node3 = new Node(node7, node8, 3);
+        var node2 = new Node(node5, node6, 2);
+        var node1 = new Node(node3, node2, 1);
+        return new Node(node1, node2,  0);
+    }
+    /**
+     *           (4)
+     *       1 ------,
+     *   (9) |       | (4)
+     *       |       |
+     *       |  (1)  |   (9)
+     *       2 ----- 3 ----- 4
+     *       |       |       |
+     *       |       | (2)   | (2)
+     *       |       |       |
+     *       '-----  5 ----- 0
+     *     (10)         (3)
+     *
+     */
+    public static int[][] notDirectedGraph(){
+        int n = 6;
+        int[][] graph = new int[n][n];
+        graph[0][4] = 2;
+        graph[0][5] = 3;
+        graph[1][2] = 9;
+        graph[1][3] = 0;
+        graph[2][1] = 9;
+        graph[2][3] = 1;
+        graph[2][5] = 10;
+        graph[3][1] = 4;
+        graph[3][2] = 1;
+        graph[3][4] = 9;
+        graph[3][5] = 2;
+        graph[4][0] = 2;
+        graph[4][3] = 9;
+        graph[5][0] = 3;
+        graph[5][2] = 10;
+        graph[5][3] = 2;
+        return graph;
+    }
+
+    /**
+     *             (10)
+     *       0 ----------> 4
+     *      | \            ^
+     * (5)  |  \  (45)     |  (25)
+     *      |   \_______,  |
+     *      v           \  |
+     *      1 --> 2 -----> 3
+     *       (20)   (1)
+     */
+    public static int[][] directedGraph(){
+        int n = 5;
+        int[][] graph = new int[n][n];
+        for (int i = 0; i < n; i++){
+            for (int j = 0; j < n; j++) {
+                graph[i][j] = 0;
+            }
+        }
+        graph[0][1]=5;
+        graph[0][3]=45;
+        graph[0][4]=10;
+        graph[1][2]=20;
+        graph[2][3] =1;
+        return graph;
+    }
 
     public static void main(String[] args) {
-        printElements(tree());
+//        //#1 with nodes
+        Set<Node> alreadyPrintedNode = new HashSet<>();
+        printElements(tree(), alreadyPrintedNode);
+        printElements(graph(), alreadyPrintedNode);
+        System.out.println("---------------");
         List<Node> nodes = binaryTree3LevelsAsList();
-        printElements(nodes.get(1));
+        alreadyPrintedNode.clear();
+        printElements(nodes.get(1), alreadyPrintedNode);
+
+        //#2 with matrix
+        int[][] matrix = {{1, 1, 1, 0, 0, 0, 0},
+                        {1, 1, 0, 1, 1, 0, 0},
+                        {1, 0, 1, 0, 0, 1, 1},
+                        {0, 1, 0, 1, 0, 0, 0},
+                        {0, 1, 0, 0, 1, 0, 0},
+                        {0, 0, 1, 0, 0, 1, 0},
+                        {0, 0, 1, 0, 0, 0, 1}};
+        Set<Integer> alreadyPrintedElement = new HashSet<>();
+        printElements(matrix, alreadyPrintedElement, 0, 0);
+
     }
-    static void printElements(Node root){
-        System.out.println(root.value() + "->");
+    static void printElements(Node root, Set<Node> alreadyPrinted){
+        if(!alreadyPrinted.contains(root)){
+            System.out.println(root.value() + "->");
+            alreadyPrinted.add(root);
+        }
         if(root.left() != null){
-            printElements(root.left());
+            printElements(root.left(), alreadyPrinted);
         }
         if(root.right() != null){
-            printElements(root.right());
+            printElements(root.right(), alreadyPrinted);
+        }
+    }
+
+    static void printElements(int[][] matrix, Set<Integer> alreadyPrinted, int startX, int startY) {
+        int rows = matrix.length;
+        int columns = matrix[0].length;
+        if(startX < 0 || startY < 0 || startX >= rows || startY >= columns){
+            return;
+        }
+        for(int x = startX, y = startY; y < columns; y++){
+            if(matrix[x][y] != 0 && !alreadyPrinted.contains(y)) {
+                System.out.println(y + "->");
+                alreadyPrinted.add(y);
+                printElements(matrix, alreadyPrinted, y, 0);
+            }
         }
     }
 }
