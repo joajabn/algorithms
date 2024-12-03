@@ -59,65 +59,68 @@ public class BFS {
         var node1 = new Node(node3, node2, 1);
         return new Node(node1, node2, 0);
     }
+
     /**
-     *           (4)
-     *       1 ------,
-     *   (9) |       | (4)
-     *       |       |
-     *       |  (1)  |   (9)
-     *       2 ----- 3 ----- 4
-     *       |       |       |
-     *       |       | (2)   | (2)
-     *       |       |       |
-     *       '-----  5 ----- 0
-     *     (10)         (3)
-     *
+     * (4)
+     * 1 ------,
+     * (9) |       | (4)
+     * |       |
+     * |  (1)  |   (9)
+     * 2 ----- 3 ----- 4
+     * |       |       |
+     * |       | (2)   | (2)
+     * |       |       |
+     * '-----  5 ----- 0
+     * (10)         (3)
      */
-    public static int[][] notDirectedGraph(){
+    public static int[][] notDirectedGraph() {
         int n = 6;
         int[][] graph = new int[n][n];
         graph[0][4] = 2;
         graph[0][5] = 3;
         graph[1][2] = 9;
         graph[1][3] = 0;
+        graph[1][4] = 9;
         graph[2][1] = 9;
         graph[2][3] = 1;
         graph[2][5] = 10;
         graph[3][1] = 4;
         graph[3][2] = 1;
-        graph[3][4] = 9;
+        graph[3][4] = 0;
         graph[3][5] = 2;
         graph[4][0] = 2;
-        graph[4][3] = 9;
+        graph[4][1] = 9;
+        graph[4][3] = 0;
         graph[5][0] = 3;
         graph[5][2] = 10;
         graph[5][3] = 2;
+        graph[1][3] = 4;
         return graph;
     }
 
     /**
-     *             (10)
-     *       0 ----------> 4
-     *      | \            ^
+     * (10)
+     * 0 ----------> 4
+     * | \            ^
      * (5)  |  \  (45)     |  (25)
-     *      |   \_______,  |
-     *      v           \  |
-     *      1 --> 2 -----> 3
-     *       (20)   (1)
+     * |   \_______,  |
+     * v           \  |
+     * 1 --> 2 -----> 3
+     * (20)   (1)
      */
-    public static int[][] directedGraph(){
+    public static int[][] directedGraph() {
         int n = 5;
         int[][] graph = new int[n][n];
-        for (int i = 0; i < n; i++){
+        for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 graph[i][j] = 0;
             }
         }
-        graph[0][1]=5;
-        graph[0][3]=45;
-        graph[0][4]=10;
-        graph[1][2]=20;
-        graph[2][3] =1;
+        graph[0][1] = 5;
+        graph[0][3] = 45;
+        graph[0][4] = 10;
+        graph[1][2] = 20;
+        graph[2][3] = 1;
         return graph;
     }
 
@@ -131,7 +134,7 @@ public class BFS {
         queue.offer(root.right());
         while (!queue.isEmpty()) {
             Node polled = queue.poll();
-            if(!alreadyPrinted.contains(polled)) {
+            if (!alreadyPrinted.contains(polled)) {
                 System.out.println(polled.value());
                 alreadyPrinted.add(polled);
                 if (polled.left() != null && !alreadyPrinted.contains(polled.left())) {
@@ -144,14 +147,19 @@ public class BFS {
         }
     }
 
-    static void printElements(int[][] matrix, Set<Integer> alreadyPrinted, int startX, int startY) {
+    static void printElements(int[][] matrix, Set<Integer> alreadyPrinted, int startingVertex) {
         int rows = matrix.length;
         int columns = matrix[0].length;
-        for(int y = startY; y < columns; y++) {
-            for (int x = startX; x < rows; x++) {
-                if(matrix[x][y] != 0 && !alreadyPrinted.contains(x)) {
-                    System.out.println(x);
-                    alreadyPrinted.add(x);
+        Queue<Integer> queue = new ArrayDeque<>();
+        queue.offer(startingVertex);
+        while (!queue.isEmpty()) {
+            Integer polled = queue.poll();
+            System.out.println(polled);
+            alreadyPrinted.add(polled);
+            startingVertex = polled;
+            for (int x = 0, y = startingVertex; x < rows; x++) {
+                if (matrix[x][y] != 0 && !alreadyPrinted.contains(x) && !queue.contains(x)) {
+                    queue.offer(x);
                 }
             }
         }
@@ -174,6 +182,6 @@ public class BFS {
                 {0, 0, 1, 0, 0, 1, 0},
                 {0, 0, 1, 0, 0, 0, 1}};
         Set<Integer> alreadyPrintedElement = new HashSet<>();
-        printElements(matrix, alreadyPrintedElement, 0, 0);
+        printElements(notDirectedGraph(), alreadyPrintedElement, 0);
     }
 }
